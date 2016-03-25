@@ -14,6 +14,7 @@
   <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
   {% endif %}
 
+  <link rel="stylesheet" type="text/css" href="assets/jquery.fullPage.css" />
   <!-- Title and description ================================================== -->
   <title>
   {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
@@ -44,6 +45,8 @@
 
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
   {{ 'modernizr.min.js' | asset_url | script_tag }}
+
+
 
   {% comment %}
     If you store has customer accounts disabled, you can remove the following JS file
@@ -311,6 +314,15 @@
       {{ 'social-buttons.js' | asset_url | script_tag }}
     {% endif %}
   {% endif %}
+
+  {{ 'jquery.fullPage.js' | asset_url | script_tag }}
+  {{ 'rivets-cart.min.js' | asset_url | script_tag }}
+
+   <script type="text/javascript">
+        jQuery(function() {
+            CartJS.init({{ cart | json }});
+        });
+    </script>
 
 </body>
 </html>
